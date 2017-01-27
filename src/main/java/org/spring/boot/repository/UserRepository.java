@@ -1,4 +1,4 @@
-package repository;
+package org.spring.boot.repository;
 
 import org.spring.boot.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;

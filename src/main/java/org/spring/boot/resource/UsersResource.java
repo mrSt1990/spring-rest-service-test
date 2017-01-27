@@ -1,10 +1,10 @@
-package resource;
+package org.spring.boot.resource;
 
 import org.spring.boot.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import repository.UserRepository;
+import org.spring.boot.repository.UserRepository;
 
 
 import javax.ws.rs.*;
