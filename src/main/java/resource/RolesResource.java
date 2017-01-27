@@ -6,12 +6,12 @@ import repository.RoleRepository;
 /**
  * Created by mr_St on 27.01.17.
  */
-public class RoleService {
+public class RolesResource {
 
     private RoleRepository roleRepository;
 
     @Autowired
-    public RoleService(RoleRepository roleRepository) {
+    public RolesResource(RoleRepository roleRepository) {
         this.roleRepository = roleRepository;
     }
 
