@@ -8,18 +8,28 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+
+import javax.persistence.ValidationMode;
 import javax.sql.DataSource;
 import java.util.Properties;
 
 /**
- * Created by mr_St on 27.01.17.
+ * Created by Aleksey Stoyokha on 27.01.17.
  */
 @Configuration
 public class DatabaseConfig {
 
+    /**
+     * Environment in which the current application is running.
+     */
     @Autowired
     private Environment environment;
 
+    /**
+     * Create a new instance of DriverManagerDataSource.
+     * Fill it by database properties from environment.
+     * @return DriverManagerDataSource instance
+     */
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -30,6 +40,10 @@ public class DatabaseConfig {
         return dataSource;
     }
 
+    /**
+     * Declare entityManagerFactory. Fill it by dataSource and Hibernate properties
+     * @return LocalContainerEntityManagerFactoryBean instance
+     */
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
@@ -37,9 +51,14 @@ public class DatabaseConfig {
         entityManagerFactory.setPackagesToScan(environment.getProperty("entityManager.packagesToScan"));
         entityManagerFactory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         entityManagerFactory.setJpaProperties(buildHibernateProperties());
+        entityManagerFactory.setValidationMode(ValidationMode.NONE);
         return entityManagerFactory;
     }
 
+    /**
+     * Build Hibernate properties from environment.
+     * @return Properties instance.
+     */
     private Properties buildHibernateProperties() {
         Properties hibernateProperties = new Properties();
         hibernateProperties.put("hibernate.dialect", environment.getProperty("hibernate.dialect"));
@@ -47,13 +66,13 @@ public class DatabaseConfig {
         return hibernateProperties;
     }
 
+    /**
+     * Declare the transaction manager.
+     * @return JpaTransactionManager instance
+     */
     @Bean
     public JpaTransactionManager transactionManager() {
         return new JpaTransactionManager();
     }
 
 }
-
-
-
-
