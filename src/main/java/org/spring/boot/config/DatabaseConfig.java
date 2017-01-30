@@ -28,6 +28,7 @@ public class DatabaseConfig {
     /**
      * Create a new instance of DriverManagerDataSource.
      * Fill it by database properties from environment.
+     *
      * @return DriverManagerDataSource instance
      */
     @Bean
@@ -41,7 +42,8 @@ public class DatabaseConfig {
     }
 
     /**
-     * Declare entityManagerFactory. Fill it by dataSource and Hibernate properties
+     * Declare entityManagerFactory. Fill it by dataSource and Hibernate properties.
+     *
      * @return LocalContainerEntityManagerFactoryBean instance
      */
     @Bean
@@ -57,6 +59,7 @@ public class DatabaseConfig {
 
     /**
      * Build Hibernate properties from environment.
+     *
      * @return Properties instance.
      */
     private Properties buildHibernateProperties() {
@@ -68,6 +71,7 @@ public class DatabaseConfig {
 
     /**
      * Declare the transaction manager.
+     *
      * @return JpaTransactionManager instance
      */
     @Bean
