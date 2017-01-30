@@ -35,10 +35,6 @@ public class RoleExistsConstraintValidator implements ConstraintValidator<RoleEx
             roleIds.add(role.getId());
         }
 
-        if (roleRepository == null) {
-            throw new Error("!!!");
-        }
-
         int roleCnt = roleRepository.findAll(roleIds).size();
         return roleCnt == roleIds.size();
     }
